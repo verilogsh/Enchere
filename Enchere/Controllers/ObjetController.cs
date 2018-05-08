@@ -77,7 +77,11 @@ namespace Enchere.Controllers
             }
             return View(model);
         }
-
+        /// <summary>
+        /// //
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Delete(string id) {
             Objet obj = ObjetRequtte.deleteObjetById(id);
