@@ -45,15 +45,35 @@ namespace Enchere.Controllers
 
         [HttpPost]
         public ActionResult Create(ObjetViewModel model) {
-            string currentUser = @User.Identity.Name;
-            //Membre mb = MembreRequette.GetUserByEmail(currentUser);
-            Membre mb = new Membre();
-            mb.Id = "AAAA";
-            ObjetRequtte.SavePhoto(model.Photo);
-            ObjetRequtte.SavePiece(model.Piece);
-            Objet obj = new Objet(IdGenerator.getObjetId(), model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Id.Trim(), true, false, model.PrixDepart);
-            ObjetRequtte.insertObjet(obj);
+            if (ModelState.IsValid) {
+                string currentUser = @User.Identity.Name;
+                //Membre mb = MembreRequette.GetUserByEmail(currentUser);
+                Membre mb = new Membre();
+                mb.Id = "AAAA";
+                ObjetRequtte.SavePhoto(model.Photo);
+                ObjetRequtte.SavePiece(model.Piece);
+                Objet obj = new Objet(IdGenerator.getObjetId(), model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Id.Trim(), true, false, model.PrixDepart);
+                ObjetRequtte.insertObjet(obj);
+            } 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id) {
+            List<Categorie> list = ObjetRequtte.getCategorie();
+            ViewBag.listCateg = list;
+            Objet obj = ObjetRequtte.getObjetById(id);
+            ObjetViewModel model = new ObjetViewModel(obj.Id, obj.Nom, obj.Description, obj.Categorie, obj.PrixDepart, null, null);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ObjetViewModel model) {
+            if (ModelState.IsValid) {
+                ObjetRequtte.updateObjet(model);
+                RedirectToAction("gestionObjetMembre", "Objet");
+            }
+            return View(model);
         }
 
     }

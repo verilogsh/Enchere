@@ -286,6 +286,7 @@
     <Content Include="Views\Account\ModifierMDP.cshtml" />
     <Content Include="Views\Objet\gestionObjetMembre.cshtml" />
     <Content Include="Views\Objet\Create.cshtml" />
+    <Content Include="Views\Objet\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace Enchere.Models {
         public string Id { get; set; }
         public string Nom { get; set; }
         public string Description { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime DateInscri { get; set; }
         public string Categorie { get; set; }
         public string Photo { get; set; }

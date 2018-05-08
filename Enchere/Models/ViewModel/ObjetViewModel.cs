@@ -5,6 +5,20 @@ using System.Web;
 
 namespace Enchere.Models.ViewModel {
     public class ObjetViewModel {
+
+        public ObjetViewModel(string id, string nom, string description, string categorie, decimal prixDepart, HttpPostedFileBase photo, HttpPostedFileBase piece) {
+            Id = id;
+            Nom = nom;
+            Description = description;
+            Categorie = categorie;
+            PrixDepart = prixDepart;
+            Photo = photo;
+            Piece = piece;
+        }
+
+        public ObjetViewModel() {}
+
+        public string Id { get; set; }
         public string Nom { get; set; }
         public string Description { get; set; }
         public string Categorie { get; set; }
