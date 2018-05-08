@@ -181,6 +181,26 @@ namespace Enchere.Dal {
             return null;
         }
 
+        public static Objet deleteObjetById(string Id) {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request = "DELETE FROM Objet WHERE Id = '" + Id.Trim() + "'";
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
         public static void SavePhoto(HttpPostedFileBase file) {
             if (file != null && !string.IsNullOrEmpty(file.FileName)) {
                 string fullPath = System.Web.Hosting.HostingEnvironment.MapPath("~/images/" + file.FileName);

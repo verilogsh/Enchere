@@ -71,9 +71,19 @@ namespace Enchere.Controllers
         public ActionResult Edit(ObjetViewModel model) {
             if (ModelState.IsValid) {
                 ObjetRequtte.updateObjet(model);
-                RedirectToAction("gestionObjetMembre", "Objet");
+                List<Categorie> list = ObjetRequtte.getCategorie();
+                ViewBag.listCateg = list;
+                return RedirectToAction("gestionObjetMembre", "Objet");
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(string id) {
+            Objet obj = ObjetRequtte.deleteObjetById(id);
+            List<Categorie> list = ObjetRequtte.getCategorie();
+            ViewBag.listCateg = list;
+            return RedirectToAction("gestionObjetMembre", "Objet");
         }
 
     }
