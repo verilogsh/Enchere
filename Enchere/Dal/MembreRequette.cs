@@ -109,7 +109,7 @@ namespace Enchere.Dal
                 {
                   user = new Membre
                     {
-                      Id = (int)dr["Id"],
+                      Id = (string)dr["Id"],
                       Civilite = (string)dr["Civilite"],
                       Nom = (string)dr["Nom"],
                         Prenom = (string)dr["Prenom"],
@@ -159,7 +159,7 @@ namespace Enchere.Dal
                 {
                     user = new Membre
                     {
-                        Id = (int)dr["Id"],
+                        Id = (string)dr["Id"],
                         Civilite = (string)dr["Civilite"],
                         Nom = (string)dr["Nom"],
                         Prenom = (string)dr["Prenom"],
@@ -309,7 +309,7 @@ namespace Enchere.Dal
                 {
                     Membre a = new Membre
                     {
-                        Id = (int)dr["Id"],
+                        Id = (string)dr["Id"],
                         Civilite = (string)dr["Civilite"],
                         Nom = (string)dr["Nom"],
                         Prenom = (string)dr["Prenom"],

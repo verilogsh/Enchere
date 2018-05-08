@@ -9,7 +9,7 @@ namespace Enchere.Models.ViewModel
     public class MembreMDP
     {
         [Key]
-        public int IdMembreMDP { get; set; }
+        public string IdMembreMDP { get; set; }
 
         [Required(ErrorMessage = " Le mot de passe est requis "), StringLength(50, MinimumLength = 6, ErrorMessage = "Le mot de passe doit compter minimum 6 caractères et maximum 50!")]
         [DataType(DataType.Password)]
@@ -25,7 +25,7 @@ namespace Enchere.Models.ViewModel
 
         public MembreMDP() { }
 
-        public MembreMDP(int id, string mdp, string confirm) {
+        public MembreMDP(string id, string mdp, string confirm) {
             IdMembreMDP = id;
             MotDePasse = mdp;
             Confirmation = confirm;

@@ -60,5 +60,38 @@ namespace Enchere.Dal {
             }
             return null;
         }
+
+        public static List<Objet> getObjetMembre(string courriel, string ordre) {
+            Membre mb = new Membre();
+            mb = MembreRequette.GetUserByEmail(courriel);
+            List<Objet> obj = new List<Objet>();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            string request;
+            if (ordre == "none") {
+                request = "SELECT o.Id, o.Nom, o.Description, o.DateInscri, c.Nom Categorie, o.Photo, o.Piece, o.IdMembre, o.Nouveau, o.EnVente, o.PrixDepart FROM Objet o, Categorie c WHERE o.IdMembre = " + mb.Id + " AND c.Id = o.IdCategorie";
+            } else {
+                request = "SELECT o.Id, o.Nom, o.Description, o.DateInscri, c.Nom Categorie, o.Photo, o.Piece, o.IdMembre, o.Nouveau, o.EnVente, o.PrixDepart FROM Objet o, Categorie c WHERE o.IdMembre = " + mb.Id + " AND c.Id = o.IdCategorie ORDER BY " + ordre;
+            }
+            
+
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read()) {
+                    obj.Add(new Objet((string)reader["Id"], (string)reader["Nom"], (string)reader["Description"], (DateTime)reader["DateInscri"], (string)reader["Categorie"], (string)reader["photo"], (string)reader["piece"], (string)reader["IdMembre"], (bool)reader["Nouveau"], (bool)reader["EnVente"], (decimal)reader["PrixDepart"]));
+                }
+                reader.Close();
+                return obj;
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
     }
 }

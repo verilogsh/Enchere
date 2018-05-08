@@ -12,7 +12,7 @@ namespace Enchere.Models
     {
         [Key]
         //  [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         // [Display(Name = "Nom de famille", ResourceType = typeof(ResourceView))]
         [Display(Name = "Civilté")]
@@ -73,7 +73,7 @@ namespace Enchere.Models
         public Membre() { }
 
 
-        public Membre(int id, string civilite, string nom, string prenom, string langue, string telephone, string adresse, string courriel, DateTime dateInscri, int cote, string motDePasse)
+        public Membre(string id, string civilite, string nom, string prenom, string langue, string telephone, string adresse, string courriel, DateTime dateInscri, int cote, string motDePasse)
         {
             Id = id;
             Civilite = civilite;

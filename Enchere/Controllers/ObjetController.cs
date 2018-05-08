@@ -25,5 +25,14 @@ namespace Enchere.Controllers
             list = ObjetRequtte.getObjetEnVente(idCategorie);
             return Json(ObjetRequtte.getObjetEnVente(idCategorie), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult gestionObjetMembre() {
+            string currentUser = @User.Identity.Name;
+            List<Objet> list = new List<Objet>();
+            list = ObjetRequtte.getObjetMembre("aa@aa.com", "none");
+            return View(list);
+        }
+
     }
 }

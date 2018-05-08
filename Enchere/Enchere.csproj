@@ -282,10 +282,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Modifier.cshtml" />
     <Content Include="Views\Account\ModifierMDP.cshtml" />
+    <Content Include="Views\Objet\gestionObjetMembre.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Objet\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
