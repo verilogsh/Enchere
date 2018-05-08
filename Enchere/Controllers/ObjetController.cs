@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Enchere.Models;
 using Enchere.Models.ViewModel;
 using Enchere.Dal;
+using Enchere.Utility;
 
 namespace Enchere.Controllers
 {
@@ -50,7 +51,7 @@ namespace Enchere.Controllers
             mb.Id = "AAAA";
             ObjetRequtte.SavePhoto(model.Photo);
             ObjetRequtte.SavePiece(model.Piece);
-            Objet obj = new Objet("0", model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Id.Trim(), true, false, model.PrixDepart);
+            Objet obj = new Objet(IdGenerator.getObjetId(), model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Id.Trim(), true, false, model.PrixDepart);
             ObjetRequtte.insertObjet(obj);
             return View();
         }
