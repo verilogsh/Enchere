@@ -61,6 +61,36 @@ namespace Enchere.Dal {
             return null;
         }
 
+        public static void insertObjet(Objet obj) {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+            int n, m;
+            if (obj.Nouveau) {
+                n = 1;
+            } else {
+                n = 0;
+            }
+            if (obj.EnVente) {
+                m = 1;
+            } else {
+                m = 0;
+            }
+
+            obj.Categorie = "kkk";
+             string request = "INSERT INTO Objet VALUES ('" + obj.Id + "',' " + obj.Nom + "', '" + obj.Description + "', '" + obj.DateInscri.ToString("yyyy-MM-dd") + "', "  + obj.PrixDepart + ", '" + obj.Categorie + "', '" + obj.IdMembre + "', '" + obj.Piece + "', '" + obj.Photo + "', " + n + ", " + m + ")";
+            SqlCommand command = new SqlCommand(request, connection);
+
+            try {
+                connection.Open();
+                command.ExecuteNonQuery();
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+            } finally {
+                connection.Close();
+            }
+
+        }
+
         public static List<Objet> getObjetMembre(string courriel, string ordre) {
             Membre mb = new Membre();
             mb = MembreRequette.GetUserByEmail(courriel);
@@ -91,6 +121,20 @@ namespace Enchere.Dal {
                 connection.Close();
             }
             return null;
+        }
+
+        public static void SavePhoto(HttpPostedFileBase file) {
+            if (file != null && !string.IsNullOrEmpty(file.FileName)) {
+                string fullPath = System.Web.Hosting.HostingEnvironment.MapPath("~/images/" + file.FileName);
+                file.SaveAs(fullPath);
+            }
+        }
+
+        public static void SavePiece(HttpPostedFileBase file) {
+            if (file != null && !string.IsNullOrEmpty(file.FileName)) {
+                string fullPath = System.Web.Hosting.HostingEnvironment.MapPath("~/pieces/" + file.FileName);
+                file.SaveAs(fullPath);
+            }
         }
 
     }

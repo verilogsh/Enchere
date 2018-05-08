@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Enchere.Models;
+using Enchere.Models.ViewModel;
 using Enchere.Dal;
 
 namespace Enchere.Controllers
@@ -32,6 +33,26 @@ namespace Enchere.Controllers
             List<Objet> list = new List<Objet>();
             list = ObjetRequtte.getObjetMembre("aa@aa.com", "none");
             return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult Create() {
+            List<Categorie> list = ObjetRequtte.getCategorie();
+            ViewBag.listCateg = list;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(ObjetViewModel model) {
+            string currentUser = @User.Identity.Name;
+            //Membre mb = MembreRequette.GetUserByEmail(currentUser);
+            Membre mb = new Membre();
+            mb.Id = "AAAA";
+            ObjetRequtte.SavePhoto(model.Photo);
+            ObjetRequtte.SavePiece(model.Piece);
+            Objet obj = new Objet("0", model.Nom.Trim(), model.Description.Trim(), DateTime.Now, model.Categorie.Trim(), model.Photo.FileName.Trim(), model.Piece.FileName.Trim(), mb.Id.Trim(), true, false, model.PrixDepart);
+            ObjetRequtte.insertObjet(obj);
+            return View();
         }
 
     }

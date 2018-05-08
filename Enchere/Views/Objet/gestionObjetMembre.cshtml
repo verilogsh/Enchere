@@ -73,7 +73,14 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-            @Html.ActionLink("Mettre en vente", "Vente", new { id=item.Id })
+            @{
+                if (item.EnVente) {
+                    @Html.ActionLink("Retirer de vente", "vente", new { id = item.Id })
+                } else {
+                    @Html.ActionLink("Mettre en vente", "retire", new { id = item.Id })
+                }
+            }
+            
         </td>
     </tr>
 }

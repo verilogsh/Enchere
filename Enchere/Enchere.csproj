@@ -206,6 +206,7 @@
     <Compile Include="Dal\MembreRequette.cs" />
     <Compile Include="Models\Membre.cs" />
     <Compile Include="Models\ViewModel\MembreMDP.cs" />
+    <Compile Include="Models\ViewModel\ObjetViewModel.cs" />
     <Compile Include="Utility\QuartzTest.cs" />
     <Compile Include="Dal\ObjetRequtte.cs" />
     <Compile Include="Global.asax.cs">
@@ -283,6 +284,7 @@
     <Content Include="Views\Account\Modifier.cshtml" />
     <Content Include="Views\Account\ModifierMDP.cshtml" />
     <Content Include="Views\Objet\gestionObjetMembre.cshtml" />
+    <Content Include="Views\Objet\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

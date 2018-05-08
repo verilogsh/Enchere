@@ -16,9 +16,9 @@ namespace Enchere.Models {
         public string IdMembre { get; set; }
         public bool Nouveau { get; set; }
         public bool EnVente { get; set; }
-        public decimal PrixDepart { get; set; }
+        public Decimal PrixDepart { get; set; }
 
-        public Objet(string id, string nom,  string description, DateTime dateInscri, string categorie, string photo, string piece, string idMembre, bool nouveau, bool enVente, decimal prixDepart) {
+        public Objet(string id, string nom,  string description, DateTime dateInscri, string categorie, string photo, string piece, string idMembre, bool nouveau, bool enVente, Decimal prixDepart) {
             Id = id;
             Nom = nom;
             Description = description;
